@@ -15,7 +15,7 @@
 class Cipher01 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth() { return "pseudocode author"; }
+   virtual std::string getPseudoAuth() { return "Adam Tipton"; }
    virtual std::string getCipherName() { return "cipher name"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
@@ -26,7 +26,12 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      //AFINE CIPHER CITATION
+      std::string str;
+      str += "Bifid Cipher in Cryptography. (2019, November 06).";
+      str += " Retrieved December 09, 2020, from\n";
+      str += "https://www.geeksforgeeks.org/bifid-cipher-in-cryptography/";
+      return str;
    }
 
    /**********************************************************
@@ -39,10 +44,33 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str = "insert the encryption pseudocode\n";
+      str = "Encryption Bifid Cipher\n";
+      str += "Initialize char grid[5][5]\n";
+      str += "Initialize string rowStr, colStr, tmpRowStr, finalStr = “ ” \n";      
+      str += "For every value in message \n";
+      str += "    For every value in grid \n";
+      str += "       If message = “ ”\n";
+      str += "          rowStr and colStr += “ ”\n";
+      str += "       If message = grid \n";
+      str += "          rowStr <- += grid[index][] \n";
+      str += "          colStr <- += grid[][index] \n\n";
+      str += "For every value in rowStr and colStr \n";
+      str += "    If value is not “ ” \n";
+      str += "       tmpRow <- rowStr value\n";
+      str += "       tmpCol <- colStr value \n";
+      str += "    If value is “ “ \n";
+      str += "       finalStr <- tmpRow and colStr and “ “ \n";
+      str += "       clear tmpRow and tmpCol\n\n";
+      str += "For every value in finalStr \n";
+      str += "    If value is “ ” \n";
+      str += "       Print “ “ \n";
+      str += "       Increment index 1 \n";
+      str += "    Else \n";
+      str += "       Print grid[value[inex]][value[index+1]] \n";
+      str += "       Increment index 2 \n";
 
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "Decryption Bifid Cipher\n";
 
       return str;
    }
