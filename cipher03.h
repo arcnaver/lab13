@@ -16,7 +16,7 @@ class Cipher03 : public Cipher
 {
 public:
    virtual std::string getPseudoAuth() { return "Brenton Trebilcock"; }
-   virtual std::string getCipherName() { return "cipher name"; }
+   virtual std::string getCipherName() { return "Affine Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -26,7 +26,10 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      std::string str = "“Implementation of Affine Cipher.”";
+       str += "GeeksforGeeks, 29 May 2019, ";
+       str += "www.geeksforgeeks.org/implementation-affine-cipher/. \n";
+      return str;
    }
 
    /**********************************************************
@@ -36,13 +39,22 @@ public:
    virtual std::string getPseudocode()
    {
       std::string str;
-
-      // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str = "insert the encryption pseudocode\n";
-
+      str = "Encryption pseudocode: \n";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "Decryption pseudocode: \n";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
 
       return str;
    }
