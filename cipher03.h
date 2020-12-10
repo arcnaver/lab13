@@ -95,7 +95,7 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * TODO: DAN - This will encrypt the Affine Cipher
     **********************************************************/
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)

@@ -116,7 +116,7 @@ public:
 
    /**********************************************************
     * DECRYPT
-    * TODO: ADD description
+    * TODO: DAN - This will decrypt the keyword encryption
     **********************************************************/
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
