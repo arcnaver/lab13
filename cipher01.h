@@ -16,7 +16,7 @@ class Cipher01 : public Cipher
 {
 public:
    virtual std::string getPseudoAuth() { return "Adam Tipton"; }
-   virtual std::string getCipherName() { return "cipher name"; }
+   virtual std::string getCipherName() { return "Keyword Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -26,11 +26,11 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      //AFINE CIPHER CITATION
+      //Keyword Cipher
+      
       std::string str;
-      str += "Bifid Cipher in Cryptography. (2019, November 06).";
-      str += " Retrieved December 09, 2020, from\n";
-      str += "https://www.geeksforgeeks.org/bifid-cipher-in-cryptography/";
+      str += "Keyword Cipher. (2019, May 29).Retrieved December 10, 2020, from\n";
+      str += "https://www.geeksforgeeks.org/keyword-cipher/";
       return str;
    }
 
@@ -44,33 +44,60 @@ public:
 
       // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str = "Encryption Bifid Cipher\n";
-      str += "Initialize char grid[5][5]\n";
-      str += "Initialize string rowStr, colStr, tmpRowStr, finalStr = “ ” \n";      
-      str += "For every value in message \n";
-      str += "    For every value in grid \n";
-      str += "       If message = “ ”\n";
-      str += "          rowStr and colStr += “ ”\n";
-      str += "       If message = grid \n";
-      str += "          rowStr <- += grid[index][] \n";
-      str += "          colStr <- += grid[][index] \n\n";
-      str += "For every value in rowStr and colStr \n";
-      str += "    If value is not “ ” \n";
-      str += "       tmpRow <- rowStr value\n";
-      str += "       tmpCol <- colStr value \n";
-      str += "    If value is “ “ \n";
-      str += "       finalStr <- tmpRow and colStr and “ “ \n";
-      str += "       clear tmpRow and tmpCol\n\n";
-      str += "For every value in finalStr \n";
-      str += "    If value is “ ” \n";
-      str += "       Print “ “ \n";
-      str += "       Increment index 1 \n";
-      str += "    Else \n";
-      str += "       Print grid[value[inex]][value[index+1]] \n";
-      str += "       Increment index 2 \n";
+      str = "Encryption Keyword Cipher\n";
+      str += "cipherMsg(string message, string encoded)";
+      str += "    string cipher = “” \n";
+      str += "       for every value in message \n";
+      str += "          if value is between a and z \n";
+      str += "             int pos <- value - 97 \n";
+      str += "             cipher += encoded[pos] \n";
+      str += "          else if value is between A and Z \n";
+      str += "             int pos <= value - 65 \n";
+      str += "             cipher += encoded[pos] \n";
+      str += "          else \n";
+      str += "             cipher += value \n";
+      str += "    return cipher\n";
+      str += " \n";
 
       // The decrypt pseudocode
-      str += "Decryption Bifid Cipher\n";
+      str += "Decryption Keyword Cipher\n";
+      str += "string plaintext = “ABCDEFGHIJKLMNOPQRSTUVWXYZ” \n";
+      str += "string decipherMsg(string message, string encoded) \n";
+      str += "    map<char, int> enc;\n";
+      str += "    for encoded size\n";
+      str += "       enc[encoded[index]] <- index\n";
+      str += "    String decipher = “”\n";
+      str += "    for all values in message\n";
+      str += "       if values is between a and z \n";
+      str += "       int pos <- enc[value - 32] \n";
+      str += "       decipher += plaintext[pos] \n";
+      str += "    else if values is between A and Z \n";
+      str += "       int pos <- enc[value] \n";
+      str += "       decipher += plaintext[pos] \n";
+      str += "    else \n";
+      str += "       Decipher += value \n";
+      str += "    return decipher \n";
+
+
+      // The helper function
+      str += "Helper function Keyword Cipher";
+      str += "string encoder(string password) \n";
+      str += "    string encoded = “” \n";
+      str += "    bool alphaArr[26] = {0} \n";
+      str += "    for every value in password \n";
+      str += "       if value is between A and Z \n";
+      str += "          if alphaArr[value - 65] is 0 \n";
+      str += "             encoded += value \n";
+      str += "             alphaArr[value - 65] <- 1 \n";
+      str += "       else if value is between a and z \n";
+      str += "          if alphaArr[value - 97] is 0 \n";
+      str += "             encoded += value - 32 \n";
+      str += "             alphaArr[value - 97] <- 1 \n";
+      str += "    for i less than 26 \n";
+      str += "       if alphaArr[i] is 0 \n";
+      str += "          alphaArr[i] <- 1 \n";
+      str += "          encoded += char(i + 65) \n";
+      str += "    return encoded \n";
 
       return str;
    }
