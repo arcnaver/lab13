@@ -68,6 +68,7 @@ public:
       str += "FOR v in size of cipherTextArray\n";
       str += " cipherText += alphabetArray[cipherTextArray[v]]";           
       str += "RETURN cipherText\n\n";
+      
       // The decrypt pseudocode
       str += "Decryption pseudocode: \n";
       str += "decrypt(cipherText, password)\n";
