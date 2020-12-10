@@ -19,7 +19,7 @@ class Cipher03 : public Cipher
 public:
    virtual std::string getPseudoAuth() { return "Brenton Trebilcock"; }
    virtual std::string getCipherName() { return "Affine Cipher"; }
-   virtual std::string getEncryptAuth() { return "Dan Worwood"; }
+   virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
