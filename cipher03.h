@@ -102,11 +102,13 @@ public:
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
+      std::string cipherText = "";
 	  std::string char1 = password.substr(0, 3);
 	  std::string char2 = password.substr(3);
 	  int key1;
 	  int key2;
+	  int alphabetSize = 26;
+	  char alphabetArray[] = "abcdefghijklmnopqrstuvwxyz";
 
 	  std::stringstream ss1;
 	  ss1 << char1;
@@ -117,17 +119,29 @@ public:
 
 	  //find if numbers are coprime of 26()alphabet
 	  bool isCoprime = true;
-	  int hcf;
+	  int hcf = 0;
 	  for (int i = 1; i <= key1; i++)
 	  {
-		  if (key1 % i == 0 && 26 % i == 0)
+		  if (key1 % i == 0 && alphabetSize % i == 0)
 			  hcf = i;
 	  }
-	  if (hcf == 1)
-		  std::cout << "This is coprime with 26\n";
+	  if (hcf != 1) {
+		  std::cout << "First number is not coprime with 26\n";
+	  }
+	  
+	  if (key2 > alphabetSize || key2 < 0) {
+		  std::cout << "Second number must be greater than 0 and less than 26\n";
+	  }
 
-
-
+	  for (int i = 0; i < plainText.length(); i++)
+	  {
+		  if (plainText[i] != ' ')
+			  cipherText = cipherText +
+			  (char)((((key1 * (plainText[i] - 'A')) + key2) % 26) + 'A');
+		  else
+			  //else simply append space character 
+			  cipherText += plainText[i];
+	  }
       return cipherText;
    }
 
