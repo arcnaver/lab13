@@ -4,7 +4,7 @@
 *    completed Caesar Cipher example.
 * 
 *     BRENTON TREBILCOCK
-* 
+*     Affine Cipher
 ********************************************************************/
 #ifndef CIPHER03_H
 #define CIPHER03_H
@@ -15,8 +15,8 @@
 class Cipher03 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth() { return "pseudocode author"; }
-   virtual std::string getCipherName() { return "cipher name"; }
+   virtual std::string getPseudoAuth() { return "Brenton Trebilcock"; }
+   virtual std::string getCipherName() { return "Affine Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -26,7 +26,10 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      std::string str = "“Implementation of Affine Cipher.”";
+       str += "GeeksforGeeks, 29 May 2019, ";
+       str += "www.geeksforgeeks.org/implementation-affine-cipher/. \n";
+      return str;
    }
 
    /**********************************************************
@@ -36,13 +39,21 @@ public:
    virtual std::string getPseudocode()
    {
       std::string str;
-
-      // TODO: please format your pseudocode
       // The encrypt pseudocode
-      str = "insert the encryption pseudocode\n";
-
+      str = "Encryption pseudocode: \n";
+      str += "encrypt(plaintext, password) \n";
+      str += ""; //NEED TO figure out what to use password for?
+      str += "";
+      str += "";
+      str += "RETURN cipherText";
       // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+      str += "Decryption pseudocode: \n";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "";
+      str += "RETURN plainText";
 
       return str;
    }
