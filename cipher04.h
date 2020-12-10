@@ -15,8 +15,8 @@
 class Cipher04 : public Cipher
 {
 public:
-   virtual std::string getPseudoAuth() { return "pseudocode author"; }
-   virtual std::string getCipherName() { return "cipher name"; }
+   virtual std::string getPseudoAuth() { return "Kyle Josephson"; }
+   virtual std::string getCipherName() { return "Vigenere Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
@@ -26,7 +26,14 @@ public:
     ***********************************************************/
    virtual std::string getCipherCitation()
    {
-      return std::string("citation");
+      std::string cite;
+      cite += "Tutorialspoint (n.d.). ";
+      cite += "Traditional Ciphers,\n\tRetrieved: December 9, 2020\n";
+      cite += "\thttps://www.tutorialspoint.com/cryptography/traditional_ciphers.htm\n\n";
+      cite += "Rembert, L. (2020, November 23). ";
+      cite += "Vigenere Cipher.\n\tPrivacy Canada.net.  Retrieved: December 9, 2020\n";
+      cite += "https://privacycanada.net/classical-encryption/vigenere-cipher/\n\n";
+      return cite;
    }
 
    /**********************************************************
@@ -36,13 +43,44 @@ public:
    virtual std::string getPseudocode()
    {
       std::string str;
+      //The Encrypt Pseudocode
+       str =  "encrypt(plainText, password)\n";
+       str += "   IF (passwordLength > textLength)\n";
+       str += "      RETURN error\n";
+       str += "   FOR (passwordLength)\n";
+       str += "      tempArray <- numeric value of each charater in password\n";
+       str += "   FOR (textLength)\n";
+       str += "      keyArray <- tempArray % passwordLength\n";
+       str += "   FOR (textLength)\n";
+       str += "      plainTextArray <- numric value of each charater in plainText\n";
+       str += "   FOR (textLength)\n";
+       str += "      cipherArray <- ((plainTextArray + keyArray) % 94) + 32\n";
+       str += "   FOR (textLength)\n";
+       str += "      cipherText <- covert to characters from values in cipherArray\n";
+       str += "   RETURN cipherText\n\n";
 
-      // TODO: please format your pseudocode
-      // The encrypt pseudocode
-      str = "insert the encryption pseudocode\n";
+      // The Decrypt Pseudocode
+      str += "decrypt(cipherText, password)\n";
+      str += "   FOR (passwordLength)\n";
+      str += "      tempArray <- numric value of each charater in password\n";
+      str += "   FOR (cipherLength)\n";
+      str += "      keyArray <- tempArray % passwordLength\n";
+      str += "   FOR (cipherLength)\n";
+      str += "      cipherArray <- numric value of each character in cipherText\n";
+      str += "   FOR (cipherLength)\n";
+      str += "      plainTextArray <- decryptValue(cipherArray value, keyArray value)\n";
+      str += "   FOR (cipherLength)\n";
+      str += "      plainText <- convert to characters from values in plainTextArray\n";
+      str += "   RETURN plainText\n";
 
-      // The decrypt pseudocode
-      str += "insert the decryption pseudocode\n";
+
+
+      str += "decryptValue(cipherArray value, keyArray value)\n";
+      str += "   answer <- ((cipherArray value - 32) + 94) - keyArray value\n";
+      str += "   IF (answer < 32)\n";
+      str += "      RETURN answer + 94\n";
+      str += "   ELSE\n";
+      str += "      RETURN answer\n\n";
 
       return str;
    }
