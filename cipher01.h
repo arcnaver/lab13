@@ -46,7 +46,7 @@ public:
       // The encrypt pseudocode
       str = "Encryption Keyword Cipher\n";
       str += "cipherMsg(string message, string encoded)";
-      str += "    string cipher = “” \n";
+      str += "    string cipher = space \n";
       str += "       for every value in message \n";
       str += "          if value is between a and z \n";
       str += "             int pos <- value - 97 \n";
@@ -61,12 +61,12 @@ public:
 
       // The decrypt pseudocode
       str += "Decryption Keyword Cipher\n";
-      str += "string plaintext = “ABCDEFGHIJKLMNOPQRSTUVWXYZ” \n";
+      str += "string plaintext = ABCDEFGHIJKLMNOPQRSTUVWXYZ \n";
       str += "string decipherMsg(string message, string encoded) \n";
       str += "    map<char, int> enc;\n";
       str += "    for encoded size\n";
       str += "       enc[encoded[index]] <- index\n";
-      str += "    String decipher = “”\n";
+      str += "    String decipher = space\n";
       str += "    for all values in message\n";
       str += "       if values is between a and z \n";
       str += "       int pos <- enc[value - 32] \n";
@@ -82,7 +82,7 @@ public:
       // The helper function
       str += "Helper function Keyword Cipher";
       str += "string encoder(string password) \n";
-      str += "    string encoded = “” \n";
+      str += "    string encoded = space \n";
       str += "    bool alphaArr[26] = {0} \n";
       str += "    for every value in password \n";
       str += "       if value is between A and Z \n";
