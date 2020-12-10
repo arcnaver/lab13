@@ -4,7 +4,7 @@
 *    completed Caesar Cipher example.
 * 
 *     BRENTON TREBILCOCK
-* 
+*     Affine Cipher
 ********************************************************************/
 #ifndef CIPHER03_H
 #define CIPHER03_H
@@ -41,7 +41,6 @@ public:
       std::string str;
       // The encrypt pseudocode
       str = "Encryption pseudocode: \n";
-      str += "";
       str += "";
       str += "";
       str += "";
