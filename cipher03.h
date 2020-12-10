@@ -41,11 +41,11 @@ public:
       std::string str;
       // The encrypt pseudocode
       str = "Encryption pseudocode: \n";
+      str += "encrypt(plaintext, password) \n";
+      str += ""; //NEED TO figure out what to use password for?
       str += "";
       str += "";
-      str += "";
-      str += "";
-      str += "";
+      str += "RETURN cipherText";
       // The decrypt pseudocode
       str += "Decryption pseudocode: \n";
       str += "";
@@ -53,7 +53,7 @@ public:
       str += "";
       str += "";
       str += "";
-      str += "";
+      str += "RETURN plainText";
 
       return str;
    }
