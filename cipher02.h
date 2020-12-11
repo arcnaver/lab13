@@ -18,7 +18,7 @@ public:
    virtual std::string getPseudoAuth() { return "Paul Porter"; }
    virtual std::string getCipherName() { return "Polybius Square Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "decrypt Kyle Josephson"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -140,7 +140,7 @@ public:
 
    /**********************************************************
     * DECRYPT
-    * TODO: ADD description
+    * TODO: Kyle Josephson decrypt
     **********************************************************/
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
