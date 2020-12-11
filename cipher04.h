@@ -17,7 +17,7 @@ class Cipher04 : public Cipher
 public:
    virtual std::string getPseudoAuth() { return "Kyle Josephson"; }
    virtual std::string getCipherName() { return "Vigenere Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Adam Tipton"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -92,8 +92,54 @@ public:
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cipherText = "";
+      int pwSize = password.length();
+      int ptSize = plainText.length();
+      int tempArray[128] = {};
+      int keyArray[256] = {};
+      int plainTextArray[256] = {};
+      int cipherArray[256] = {};
+
+      //Check length
+      if (password.length() > plainText.length())
+      {
+         assert(password.length() < plainText.length());
+         return "Error";
+      }
+
+      for (int i = 0; i < password.length(); i++)
+      {
+         tempArray[i] = int(password[i]);
+         cout << tempArray[i] << " ";
+      }
+      
+      for (int i = 0; i < plainText.length(); i++)
+      {
+         int repeatValue = i % pwSize;
+         keyArray[i] = tempArray[repeatValue];
+         cout << keyArray[i] << " ";
+      }
+      
+      for (int i = 0; i < plainText.length(); i++)
+      {
+         plainTextArray[i] = plainText[i];
+         cout << plainTextArray[i] << " ";
+      }
+      
+      for (int i = 0; i < plainText.length(); i++)
+      {
+         cipherArray[i] = ((plainTextArray[i] + keyArray[i]) % 94 + 32);
+         cout << cipherArray[i] << " ";
+      }
+      
+      for (int i = 0; i < plainText.length(); i++)
+      {
+         //How do I change the values to ASCII characters and place them into the string?
+         //This isn't working. I also tried to_string and others. 
+         cipherText += cipherArray[i];
+         cout << cipherText << " ";
+      }
+      cout << endl;
       return cipherText;
    }
 
