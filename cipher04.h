@@ -18,7 +18,7 @@ public:
    virtual std::string getPseudoAuth() { return "Kyle Josephson"; }
    virtual std::string getCipherName() { return "Vigenere Cipher"; }
    virtual std::string getEncryptAuth() { return "Adam Tipton"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Brenton Trebilcock"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -148,10 +148,45 @@ public:
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string plainText = "";
+      int pwSize = password.length();
+      int ptSize = cipherText.length();
+      int tempArray[128] = {};
+      int keyArray[256] = {};
+      int plainTextArray[256] = {};
+      int cipherArray[256] = {};      
+
+      for(int i = 0; i < password.length(); i++)
+      {
+         tempArray[i] = (int)password[i];
+      }
+      for(int i = 0; i < cipherText.length(); i++)
+      {
+         keyArray[i] = tempArray[i]%password.length();
+      }
+      for(int i = 0; i < cipherText.length(); i++)
+      {
+         cipherArray[i] = (int)cipherText[i];
+      }
+      for(int i = 0; i < cipherText.length(); i++)
+      {
+         plainTextArray[i] = decryptValue(cipherArray[i], keyArray[i]);
+      }
+      for(int i = 0; i < cipherText.length(); i++)
+      {
+         plainText += (char)plainTextArray[i];
+      }
       return plainText;
    }
-};
 
+      virtual int decryptValue(int cipherValue, int keyValue)
+      {
+         int result = ((cipherValue -32) + 94) - keyValue;
+
+         if(result < 32)  
+            return result+94;
+         else
+            return result;
+      }
+};
 #endif // CIPHER04_H
