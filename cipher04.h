@@ -87,7 +87,8 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * This will use the password to encrypt the message for the
+    * Vigenere cipher.
     **********************************************************/
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
