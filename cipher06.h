@@ -8,7 +8,8 @@
 ********************************************************************/
 #ifndef CIPHER06_H
 #define CIPHER06_H
-
+#include <sstream> 
+#include <iostream> 
 /********************************************************************
  * CLASS
  *******************************************************************/
@@ -17,7 +18,7 @@ class Cipher06 : public Cipher
 public:
    virtual std::string getPseudoAuth() { return "Dan Worwood"; }
    virtual std::string getCipherName() { return "Rail Fence Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Brenton Trebilcock"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -113,9 +114,37 @@ public:
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
-      return cipherText;
+	int key;
+	std::stringstream passWordString(password);
+	std::string cipherText;
+	passWordString >> key;
+	char rail[key][plainText.length()]; 
+	int row = 0;
+	int col = 0;
+	bool dir_down = false;
+	for(int i = 0; i < key; i++)
+	{
+		for(int j = 0; j < plainText.length(); j++)
+			rail[i][j] = '/n';
+	}
+	for(int i = 0; i < plainText.length(); i++)
+	{
+		if(row == 0 && row == (key - 1))
+		{
+			dir_down = !dir_down;
+		}
+		rail[row][col++] = plainText[i];
+		dir_down ? row++ : row --;
+	}
+	for(int i = 0; i < key; i++)
+	{
+		for(int j = 0; j < plainText.length(); j++)
+			if(rail[i][j] != '/n')
+			{
+				cipherText += rail[i][j];
+			}
+	}
+	return cipherText;
    }
 
    /**********************************************************
