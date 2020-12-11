@@ -57,7 +57,7 @@ public:
 	  str += "          FOR value < message length\n";
 	  str += "             rail[number][value] is newline\n";
 	  str += "       FOR value < message length \n";
-	  str += "          IF row is 0 and row is key-1\n";
+	  str += "          IF row is 0 and row is key-1\n"; //should be or
 	  str += "             dir_down is !dir_down\n";
 	  str += "          rail[row][col++] = text[value]\n";
 	  str += "          dir_down?row++ : row--\n";
@@ -118,18 +118,18 @@ public:
 	std::stringstream passWordString(password);
 	std::string cipherText;
 	passWordString >> key;
-	char rail[key][plainText.length()]; 
+	char rail[key][(plainText.length())]; 
 	int row = 0;
 	int col = 0;
 	bool dir_down = false;
 	for(int i = 0; i < key; i++)
 	{
 		for(int j = 0; j < plainText.length(); j++)
-			rail[i][j] = '/n';
+			rail[i][j] = '\n';
 	}
 	for(int i = 0; i < plainText.length(); i++)
 	{
-		if(row == 0 && row == (key - 1))
+		if(row == 0 || row == (key - 1))
 		{
 			dir_down = !dir_down;
 		}
@@ -139,9 +139,9 @@ public:
 	for(int i = 0; i < key; i++)
 	{
 		for(int j = 0; j < plainText.length(); j++)
-			if(rail[i][j] != '/n')
+			if(rail[i][j] != '\n')
 			{
-				cipherText += rail[i][j];
+				cipherText.push_back(rail[i][j]);
 			}
 	}
 	return cipherText;
