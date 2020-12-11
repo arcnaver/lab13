@@ -109,37 +109,35 @@ public:
 
       for (int i = 0; i < password.length(); i++)
       {
-         tempArray[i] = int(password[i]);
-         cout << tempArray[i] << " ";
+         tempArray[i] = (int)password[i];
+         std::cout << tempArray[i] << " ";
       }
       
       for (int i = 0; i < plainText.length(); i++)
       {
          int repeatValue = i % pwSize;
          keyArray[i] = tempArray[repeatValue];
-         cout << keyArray[i] << " ";
+         std::cout << keyArray[i] << " ";
       }
       
       for (int i = 0; i < plainText.length(); i++)
       {
-         plainTextArray[i] = plainText[i];
-         cout << plainTextArray[i] << " ";
+         plainTextArray[i] = (int)plainText[i];
+         std::cout << plainTextArray[i] << " ";
       }
       
       for (int i = 0; i < plainText.length(); i++)
       {
          cipherArray[i] = ((plainTextArray[i] + keyArray[i]) % 94 + 32);
-         cout << cipherArray[i] << " ";
+         std::cout << cipherArray[i] << " ";
       }
       
       for (int i = 0; i < plainText.length(); i++)
-      {
-         //How do I change the values to ASCII characters and place them into the string?
-         //This isn't working. I also tried to_string and others. 
-         cipherText += cipherArray[i];
-         cout << cipherText << " ";
+      {          
+         cipherText += (char)cipherArray[i];
+         std::cout << cipherText << " ";
       }
-      cout << endl;
+      std::cout << std::endl;
       return cipherText;
    }
 
