@@ -8,6 +8,7 @@
 ********************************************************************/
 #ifndef CIPHER01_H
 #define CIPHER01_H
+#include <map> 
 
 /********************************************************************
  * CLASS
@@ -18,7 +19,7 @@ public:
    virtual std::string getPseudoAuth() { return "Adam Tipton"; }
    virtual std::string getCipherName() { return "Keyword Cipher"; }
    virtual std::string getEncryptAuth() { return "encrypt author"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Dan Worwood"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -115,16 +116,84 @@ public:
    }
 
    /**********************************************************
+	* ENCODE
+	* TODO: DAN - This will Encode the needed string
+	**********************************************************/
+   std::string encode(const std::string& password)
+   {
+	   std::string encoded = " ";
+	   bool alphaArr[26] = { 0 };
+	   for (int i = 0; i < password.size(); i++)
+	   {
+		   if (password[i] >= 'A' && password[i] <= 'Z')
+		   {
+			   if (alphaArr[password[i] - 65] == 0)
+			   {
+				   encoded += password[i];
+				   alphaArr[password[i] - 65] = 1;
+			   }
+		   }
+		   else if (password[i] >= 'a' && password[i] <= 'z')
+		   {
+			   if (alphaArr[password[i] - 97] == 0)
+			   {
+				   encoded += password[i] - 32;
+				   alphaArr[password[i] - 97] = 1;
+			   }
+		   }
+	   }
+
+	   for (int i = 0; i < 26; i++)
+	   {
+		   if (alphaArr[i] == 0)
+		   {
+			   alphaArr[i] = 1;
+			   encoded += char(i + 65);
+		   }
+	   }
+
+	   return encoded;
+   };
+
+   /**********************************************************
     * DECRYPT
-    * TODO: ADD description
+    * TODO: DAN - This will decrypt the keyword encryption
     **********************************************************/
+   std::string plaintext = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
-      return plainText;
+	   std::string encoded = "";
+	   encoded = encode(password);
+	
+	   std::map <char, int> enc;
+	   for (int i = 0; i < encoded.size(); i++)
+	   {
+		   enc[encoded[i]] = i;
+	   }
+
+	   std::string decipher = ""; 
+	   for (int i = 0; i < cipherText.size(); i++)
+	   {
+		   if (cipherText[i] >= 'a' && cipherText[i] <= 'z')
+		   {
+			   int pos = enc[cipherText[i] - 32];
+			   decipher += plaintext[pos];
+		   }
+		   else if (cipherText[i] >= 'A' && cipherText[i] <= 'Z')
+		   {
+			   int pos = enc[cipherText[i]];
+			   decipher += plaintext[pos];
+		   }
+		   else
+		   {
+			   decipher += cipherText[i];
+		   }
+	   }
+	   return decipher;
    }
 };
+
+
 
 #endif // CIPHER01_H
