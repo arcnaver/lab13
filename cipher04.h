@@ -32,7 +32,7 @@ public:
       cite += "\thttps://www.tutorialspoint.com/cryptography/traditional_ciphers.htm\n\n";
       cite += "Rembert, L. (2020, November 23). ";
       cite += "Vigenere Cipher.\n\tPrivacy Canada.net.  Retrieved: December 9, 2020\n";
-      cite += "https://privacycanada.net/classical-encryption/vigenere-cipher/\n\n";
+      cite += "\thttps://privacycanada.net/classical-encryption/vigenere-cipher/\n\n";
       return cite;
    }
 
