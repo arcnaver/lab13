@@ -110,8 +110,33 @@ public:
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cipherText;
+      std::string encoding = " ";
+      encoding = encode(password);
+      int pos = 0;
+      for (int i = 0; i < plainText.length(); i++)
+      {
+         if (plainText[i] > 'a' && plainText[i] < 'z')
+         {
+            pos = plainText[i] - 97;
+            cipherText += encoding[pos];
+         }            
+         else if (plainText[i] > 'A' && plainText[i] < 'Z')
+         {
+            pos = plainText[i] - 65;
+            cipherText += encoding[pos];
+         }
+         else
+         {
+            cipherText += plainText[i];
+         }
+         
+            
+
+      }
+
+
+      
       return cipherText;
    }
 
