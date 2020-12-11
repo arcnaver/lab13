@@ -68,9 +68,9 @@ public:
       str += "FOR v in size of plainTextArray\n";
       str += " cipherTextArray <- (key1*plainTextArray[v]+key2) % alphabetSize\n";
       str += "FOR v in size of cipherTextArray\n";
-      str += " cipherText += alphabetArray[cipherTextArray[v]]";           
+      str += " cipherText += alphabetArray[cipherTextArray[v]]\n";           
       str += "RETURN cipherText\n\n";
-      
+
       // The decrypt pseudocode
       str += "Decryption pseudocode: \n";
       str += "decrypt(cipherText, password)\n";
@@ -89,7 +89,7 @@ public:
       str += "FOR v in size of cipherTextArray\n";
       str += " plainTextArray <- key1^-1 * (cipherTextArray[v]-key2) % alphabetSize\n";    
       str += "FOR v in size of plainTextArray\n";
-      str += " plainText += alphabetArray[plainTextArray[v]]";         
+      str += " plainText += alphabetArray[plainTextArray[v]]\n";         
       str += "RETURN plainText\n";
 
       return str;
