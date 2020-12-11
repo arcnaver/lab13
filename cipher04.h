@@ -149,8 +149,6 @@ public:
       const std::string& password)
    {
       std::string plainText = "";
-      int pwSize = password.length();
-      int ptSize = cipherText.length();
       int tempArray[128] = {};
       int keyArray[256] = {};
       int plainTextArray[256] = {};
@@ -181,7 +179,7 @@ public:
 
       virtual int decryptValue(int cipherValue, int keyValue)
       {
-         int result = ((cipherValue -32) + 94) - keyValue;
+         int result = ((cipherValue -32) + 94) - keyValue ;
 
          if(result < 32)  
             return result+94;
