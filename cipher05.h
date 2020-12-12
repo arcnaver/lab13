@@ -17,7 +17,7 @@ class Cipher05 : public Cipher
 public:
    virtual std::string getPseudoAuth() { return "Jake Schwantes"; }
    virtual std::string getCipherName() { return "Route Cypher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Paul Porter"; }
    virtual std::string getDecryptAuth() { return "decrypt author"; }
 
    /***********************************************************
@@ -94,13 +94,45 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * The route cipher follows a path along a plainText using a
+    * password route to create a cipher. It requires a route
+    * with a starting place and an ending place
     **********************************************************/
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      assert((plainText.size() + 2) == password.size());
+      std::string tempText = plainText;
+      //Add misleading Xs to the end of tempText
+      for (int i = 0; i < plainText.size() % 4; i++)
+      {
+         tempText.push_back('X');
+      }
+      std::string cipherText = "";
+      int x = password[0] % 9;
+      int y = password[1] % 9;
+      std::string route = password.substr(2);
+      for (int i = 0; i < plainText.size(); i++)
+      {
+         int offset = ((x % 4) + (y * 4)) % plainText.length();
+         cipherText += tempText[offset];
+         if (route[i] % 4 == 0)
+         {
+            x++;
+         }
+         else if (route[i] % 4 == 1)
+         {
+            y++;
+         }
+         else if (route[i] % 4 == 2)
+         {
+            x--;
+         }
+         else if (route[i] % 4 == 3)
+         {
+            y--;
+         }
+      }
       return cipherText;
    }
 

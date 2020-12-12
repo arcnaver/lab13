@@ -19,7 +19,7 @@ public:
    virtual std::string getPseudoAuth() { return "Dan Worwood"; }
    virtual std::string getCipherName() { return "Rail Fence Cipher"; }
    virtual std::string getEncryptAuth() { return "Brenton Trebilcock"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Paul Porter"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -154,8 +154,63 @@ public:
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string plainText = "";
+      int key;
+      std::stringstream passWordString(password);
+	    passWordString >> key;
+      char rail[key][cipherText.size()];
+      int row = 0;
+      int col = 0;
+      bool dirDown = false;
+      for (int i = 0; i < key; i++) 
+      {
+         for (int j = 0; j < cipherText.size(); j++)
+         {
+            rail[i][j] = '\n';
+         }
+      }
+      for (int i = 0; i < cipherText.size(); i++)
+      {
+         if (row == 0)
+         {
+            dirDown = true;
+         }
+         else if (row == (key - 1))
+         {
+            dirDown = false;
+         }
+         rail[row][col++] = '*';
+         dirDown ? row++ : row--;
+      }
+      int index = 0;
+      for (int i = 0; i < key; i++)
+      {
+         for (int j = 0; j < cipherText.size(); j++)
+         {
+            if (rail[i][j] == '*' && index < cipherText.size())
+            {
+               rail[i][j] = cipherText[index++];
+            }
+         }
+      }
+      row = 0;
+      col = 0;
+      for (int i = 0; i < cipherText.size(); i++)
+      {
+         if (row == 0)
+         {
+            dirDown = true;
+         }
+         else if (row == (key - 1))
+         {
+           dirDown = false;
+         }
+         if (rail[row][col] != '*')
+         {
+            plainText.push_back(rail[row][col++]);
+         }
+         dirDown ? row++ : row--;
+      }
       return plainText;
    }
 };
