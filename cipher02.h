@@ -130,6 +130,46 @@ public:
     * ENCRYPT
     * TODO: ADD description
     **********************************************************/
+
+    generateSquareFromKey(string key)
+    {
+      char defaultSquare[25] = {'A','B','C','D','E',
+                                'F','G','H','I','K',
+                                'L','M','N','O','P',
+                                'Q','R','S','T','U',
+                                'V','W','X','Y','Z'};
+      key = convertJToI(key);
+      key = convertToUppercase(key);
+       char avoidDuplicates = " ";
+      int position = 0;
+      for (int i = 0; i < key.length(); i++)
+      {
+         bool flag = True;
+         for (processedChar in avoidDuplicates)
+         {
+             if (processedChar == char)
+                 flag = False;
+         }
+         if (flag)
+         {
+             temp = defaultSquare[position];
+             savedPosition = 0;
+             for (matchChar in defaultSquare)
+             {
+                 if (matchChar == char)
+                     break;
+                 savedPosition += 1;
+             }
+             defaultSquare[position] = char;
+             defaultSquare[savedPosition] = temp;
+             avoidDuplicates += char;
+             position += 1;
+         }
+      }
+     return defaultSquare;
+     }
+
+
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
@@ -145,8 +185,33 @@ public:
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string plainText = " ";
+      char square[25];
+      int position = 0;
+      int xVal = 0;
+      int yVal = 0;
+
+      char cipherArray = ['A', 'B', 'C', 'D', 'E'];
+      square[] = generateSquareFromKey(password);
+      while (position < len(ciphertext))
+      {
+         if (ciphertext[position] == " ")
+         {
+             plaintext += " ";
+             position += 1;
+         }
+         else
+         {
+             xVal = ciphertext[position];
+             position += 1;
+             yVal = ciphertext[position];
+             position += 1;
+             xPosition = getValFromCipherArray(xVal, cipherArray);
+             yPosition = getValFromCipherArray(yVal, cipherArray);
+             arrayPosition = xPosition + (5 * yPosition);
+             plaintext += square[arrayPosition];
+         }
+      }
       return plainText;
    }
 };

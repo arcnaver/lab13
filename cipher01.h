@@ -105,7 +105,7 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * TODO: Kyle Josphson
     **********************************************************/
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
@@ -114,6 +114,8 @@ public:
       std::string encoding = " ";
       encoding = encode(password);
       int pos = 0;
+
+      
       for (int i = 0; i < plainText.length(); i++)
       {
          if (plainText[i] > 'a' && plainText[i] < 'z')
