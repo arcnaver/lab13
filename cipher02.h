@@ -216,7 +216,7 @@ public:
       int position = 0;
       generateSquareFromKey(password, square);
       std::string tempString = convertToUppercase(plainText);
-      tempString = convertJToI(plainText);
+      tempString = convertJToI(tempString);
       std::string ciphertext = "";
 
       char cipherArray[5] = {'A', 'B', 'C', 'D', 'E'};
@@ -224,18 +224,13 @@ public:
         if (tempString[i] == ' ')
             ciphertext += ' ';
         else {
-            int position = 0;
-            for(int j = 0; j < 25; j++)
-                if (square[j] == tempString[i]) {
-                    break;
-                    position += 1;
-                }                 
+            int position = getValFromCipherArray(tempString[i], square, 25);            
+            int xPosition = position % 5;
+            int yPosition = position / 5;
+            ciphertext += cipherArray[xPosition] + cipherArray[yPosition];
         }
-        int xPosition = position % 5;
-        int yPosition = position / 5;
-        ciphertext += cipherArray[xPosition] + cipherArray[yPosition];
-        return ciphertext;
       }
+      return ciphertext;
    }
 
    /**********************************************************
