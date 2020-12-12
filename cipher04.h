@@ -184,7 +184,7 @@ public:
 
       virtual int decryptValue(int cipherValue, int keyValue)
       {
-         int result = ((cipherValue -32) + 94) - keyValue ;
+         int result = ((cipherValue - 32 ) + 94) - keyValue;
 
          if(result < 32)  
             return result+94;
