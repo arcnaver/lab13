@@ -193,7 +193,7 @@ public:
            {
               char temp = defaultSquare[position];
               defaultSquare[position] = key[i];
-              defaultSquare[getValFromCipherArray(key[i], square, 25)] = temp;
+              defaultSquare[getValFromCipherArray(key[i], defaultSquare, 25)] = temp;
               avoidDuplicates.push_back(key[i]);
               position += 1;
            }
@@ -223,7 +223,7 @@ public:
         if (tempString[i] == ' ')
             cipherText += ' ';
         else {
-            int position = getValFromCipherArray(tempString[i], square, 25);            
+            int position = getValFromCipherArray(tempString[i], square, 25);
             int xPosition = position % 5;
             int yPosition = position / 5;
             cipherText += cipherArray[xPosition];
