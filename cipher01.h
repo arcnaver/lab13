@@ -111,19 +111,17 @@ public:
       const std::string& password)
    {
       std::string cipherText;
-      std::string encoding = " ";
+      std::string encoding;
       encoding = encode(password);
       int pos = 0;
-
-      
       for (int i = 0; i < plainText.length(); i++)
       {
-         if (plainText[i] > 'a' && plainText[i] < 'z')
+         if (plainText[i] >= 'a' && plainText[i] <= 'z')
          {
             pos = plainText[i] - 97;
             cipherText += encoding[pos];
          }            
-         else if (plainText[i] > 'A' && plainText[i] < 'Z')
+         else if (plainText[i] >= 'A' && plainText[i] <= 'Z')
          {
             pos = plainText[i] - 65;
             cipherText += encoding[pos];
@@ -132,13 +130,7 @@ public:
          {
             cipherText += plainText[i];
          }
-         
-            
-
       }
-
-
-      
       return cipherText;
    }
 
@@ -148,7 +140,7 @@ public:
 	**********************************************************/
    std::string encode(const std::string& password)
    {
-	   std::string encoded = " ";
+	   std::string encoded = "";
 	   bool alphaArr[26] = { 0 };
 	   for (int i = 0; i < password.size(); i++)
 	   {
@@ -181,7 +173,7 @@ public:
 
 	   return encoded;
    };
-
+ 
    /**********************************************************
     * DECRYPT
     * TODO: DAN - This will decrypt the keyword encryption
@@ -220,7 +212,5 @@ public:
 	   return decipher;
    }
 };
-
-
 
 #endif // CIPHER01_H
