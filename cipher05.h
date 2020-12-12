@@ -18,7 +18,7 @@ public:
    virtual std::string getPseudoAuth() { return "Jake Schwantes"; }
    virtual std::string getCipherName() { return "Route Cypher"; }
    virtual std::string getEncryptAuth() { return "Paul Porter"; }
-   virtual std::string getDecryptAuth() { return "decrypt author"; }
+   virtual std::string getDecryptAuth() { return "Paul Porter"; }
 
    /***********************************************************
     * GET CIPHER CITATION
@@ -71,7 +71,7 @@ public:
       str += "\n";
 
       // The decrypt pseudocode
-      str =  "string text = \"\"\n";
+      str +=  "string text = \"\"\n";
       str += "//These numbers are arbitrary, just as\n";
       str += "//long as they match the encryption method\n";
       str += "int x = cypherText[0] % 9\n";
@@ -101,21 +101,16 @@ public:
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      assert((plainText.size() + 2) == password.size());
+      assert((plainText.size() + 1) == password.size());
       std::string tempText = plainText;
-      //Add misleading Xs to the end of tempText
-      for (int i = 0; i < plainText.size() % 4; i++)
-      {
-         tempText.push_back('X');
-      }
       std::string cipherText = "";
-      int x = password[0] % 9;
-      int y = password[1] % 9;
+      int x = password[0] % 4;
+      int y = password[1] % 4;
       std::string route = password.substr(2);
-      for (int i = 0; i < plainText.size(); i++)
+      int offset = ((x % 4) + (y * 4)) % plainText.length();
+      cipherText.push_back(tempText[offset]);
+      for (int i = 0; i < route.size(); i++)
       {
-         int offset = ((x % 4) + (y * 4)) % plainText.length();
-         cipherText += tempText[offset];
          if (route[i] % 4 == 0)
          {
             x++;
@@ -132,6 +127,13 @@ public:
          {
             y--;
          }
+         offset = ((x % 4) + (y * 4)) % plainText.length();
+         cipherText.push_back(tempText[offset]);
+         //Add misleading letters to the end of the cipher
+         for (int i = 0; i < cipherText.size() % 4; i++)
+         {
+             tempText.push_back('a');
+         }
       }
       return cipherText;
    }
@@ -143,8 +145,33 @@ public:
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = cipherText;
-      // TODO - Add your code here
+      std::string plainText = "";
+      int x = password[0] % 4;
+      int y = password[1] % 4;
+      std::string route = password.substr(2);
+      int offset = ((x % 4) + (y * 4)) % cipherText.length();
+      plainText.push_back(cipherText[offset]);
+      for (int i = 0; i < route.size(); i++)
+      {
+         if (route[i] % 4 == 0)
+         {
+            x++;
+         }
+         else if (route[i] % 4 == 1)
+         {
+            y++;
+         }
+         else if (route[i] % 4 == 2)
+         {
+            x--;
+         }
+         else if (route[i] % 4 == 3)
+         {
+            y--;
+         }
+         offset = ((x % 4) + (y * 4)) % cipherText.length();
+         plainText.push_back(cipherText[offset]);
+      }
       return plainText;
    }
 };

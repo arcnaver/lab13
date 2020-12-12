@@ -118,7 +118,7 @@ public:
 	std::stringstream passWordString(password);
 	std::string cipherText;
 	passWordString >> key;
-	char rail[key][(plainText.length())]; 
+	char rail[key][(plainText.length())];
 	int row = 0;
 	int col = 0;
 	bool dir_down = false;
