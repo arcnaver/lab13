@@ -131,50 +131,54 @@ public:
     * TODO: ADD description
     **********************************************************/
 
-    generateSquareFromKey(string key)
+    void generateSquareFromKey(std::string key, char* square)
     {
-      char defaultSquare[25] = {'A','B','C','D','E',
-                                'F','G','H','I','K',
-                                'L','M','N','O','P',
-                                'Q','R','S','T','U',
-                                'V','W','X','Y','Z'};
-      key = convertJToI(key);
-      key = convertToUppercase(key);
-       char avoidDuplicates = " ";
-      int position = 0;
-      for (int i = 0; i < key.length(); i++)
-      {
-         bool flag = True;
-         for (processedChar in avoidDuplicates)
-         {
-             if (processedChar == char)
-                 flag = False;
-         }
-         if (flag)
-         {
-             temp = defaultSquare[position];
-             savedPosition = 0;
-             for (matchChar in defaultSquare)
-             {
-                 if (matchChar == char)
-                     break;
-                 savedPosition += 1;
-             }
-             defaultSquare[position] = char;
-             defaultSquare[savedPosition] = temp;
-             avoidDuplicates += char;
-             position += 1;
-         }
-      }
-     return defaultSquare;
+        char defaultSquare[25] = {'A','B','C','D','E',
+                                  'F','G','H','I','K',
+                                  'L','M','N','O','P',
+                                  'Q','R','S','T','U',
+                                  'V','W','X','Y','Z'};
+        key = convertJToI(key);
+        key = convertToUppercase(key);
+        std::string avoidDuplicates = "";
+        int position = 0;
+        for (int i = 0; i < key.length(); i++)
+        {
+           bool flag = true;
+           for (auto processedChar : avoidDuplicates)
+           {
+              if (processedChar == key[i])
+                  flag = false;
+           }
+           if (flag)
+           {
+              char temp = defaultSquare[position];
+              int savedPosition = 0;
+              for (auto matchChar : defaultSquare)
+              {
+                  if (matchChar == key[i])
+                      break;
+                  savedPosition += 1;
+              }
+              defaultSquare[position] = key[i];
+              defaultSquare[savedPosition] = temp;
+              avoidDuplicates.push_back(key[i]);
+              position += 1;
+           }
+        }
+        //copy 'em all over
+        for (int i = 0; i < 25; i++) {
+          square[i] = defaultSquare[i];
+        }
      }
 
 
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
-      std::string cipherText = plainText;
-      // TODO - Add your code here
+      std::string cipherText = "";
+      char square[25];
+      generateSquareFromKey(password, square);
       return cipherText;
    }
 
@@ -185,31 +189,31 @@ public:
    virtual std::string decrypt(const std::string& cipherText,
       const std::string& password)
    {
-      std::string plainText = " ";
+      std::string plainText = "";
       char square[25];
       int position = 0;
-      int xVal = 0;
-      int yVal = 0;
+      char xVal;
+      char yVal;
 
-      char cipherArray = ['A', 'B', 'C', 'D', 'E'];
-      square[] = generateSquareFromKey(password);
-      while (position < len(ciphertext))
+      char cipherArray[5] = {'A', 'B', 'C', 'D', 'E'};
+      generateSquareFromKey(password, square);
+      while (position < cipherText.length())
       {
-         if (ciphertext[position] == " ")
+         if (cipherText[position] == ' ')
          {
-             plaintext += " ";
+             plainText.push_back(' ');
              position += 1;
          }
          else
          {
-             xVal = ciphertext[position];
+             xVal = cipherText[position];
              position += 1;
-             yVal = ciphertext[position];
+             yVal = cipherText[position];
              position += 1;
-             xPosition = getValFromCipherArray(xVal, cipherArray);
-             yPosition = getValFromCipherArray(yVal, cipherArray);
-             arrayPosition = xPosition + (5 * yPosition);
-             plaintext += square[arrayPosition];
+             int xPosition = getValFromCipherArray(xVal, cipherArray);
+             int yPosition = getValFromCipherArray(yVal, cipherArray);
+             int arrayPosition = xPosition + (5 * yPosition);
+             plainText.push_back(square[arrayPosition]);
          }
       }
       return plainText;
