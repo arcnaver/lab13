@@ -17,7 +17,7 @@ class Cipher02 : public Cipher
 public:
    virtual std::string getPseudoAuth() { return "Paul Porter"; }
    virtual std::string getCipherName() { return "Polybius Square Cipher"; }
-   virtual std::string getEncryptAuth() { return "encrypt author"; }
+   virtual std::string getEncryptAuth() { return "Jake Schwantes"; }
    virtual std::string getDecryptAuth() { return "decrypt Kyle Josephson"; }
 
    /***********************************************************
@@ -206,15 +206,36 @@ public:
 
    /**********************************************************
     * ENCRYPT
-    * TODO: ADD description
+    * TODO: Jake Schwantes Encrypt
     **********************************************************/
    virtual std::string encrypt(const std::string& plainText,
       const std::string& password)
    {
       std::string cipherText = "";
       char square[25];
+      int position = 0;
       generateSquareFromKey(password, square);
-      return cipherText;
+      std::string tempString = convertToUppercase(plainText);
+      tempString = convertJToI(plainText);
+      std::string ciphertext = "";
+
+      char cipherArray[5] = {'A', 'B', 'C', 'D', 'E'};
+      for(int i = 0; i < tempString.length(); i++) {
+        if (tempString[i] == ' ')
+            ciphertext += ' ';
+        else {
+            int position = 0;
+            for(int j = 0; j < 25; j++)
+                if (square[j] == tempString[i]) {
+                    break;
+                    position += 1;
+                }                 
+        }
+        int xPosition = position % 5;
+        int yPosition = position / 5;
+        ciphertext += cipherArray[xPosition] + cipherArray[yPosition];
+        return ciphertext;
+      }
    }
 
    /**********************************************************
