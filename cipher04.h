@@ -150,28 +150,32 @@ public:
       const std::string& password)
    {
       std::string plainText = "";
+      int cipherLen = cipherText.length();
+      int passwordLen = password.length();
+      int repeatValue = 0;
       int tempArray[128] = {};
       int keyArray[256] = {};
       int plainTextArray[256] = {};
       int cipherArray[256] = {};      
 
-      for(int i = 0; i < password.length(); i++)
+      for(int i = 0; i < passwordLen; i++)
       {
          tempArray[i] = (int)password[i];
       }
-      for(int i = 0; i < cipherText.length(); i++)
+      for(int i = 0; i < cipherLen; i++)
       {
-         keyArray[i] = tempArray[i]%password.length();
+         repeatValue = i % passwordLen;
+         keyArray[i] = tempArray[repeatValue];
       }
-      for(int i = 0; i < cipherText.length(); i++)
+      for(int i = 0; i < cipherLen; i++)
       {
          cipherArray[i] = (int)cipherText[i];
       }
-      for(int i = 0; i < cipherText.length(); i++)
+      for(int i = 0; i < cipherLen; i++)
       {
          plainTextArray[i] = decryptValue(cipherArray[i], keyArray[i]);
       }
-      for(int i = 0; i < cipherText.length(); i++)
+      for(int i = 0; i < cipherLen; i++)
       {
          plainText += (char)plainTextArray[i];
       }
